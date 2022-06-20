@@ -20,7 +20,7 @@ API = "https://apibu.herokuapp.com/api/y-images?query="
 START_TEXT = """Hello {},
 I am an image search bot. You can use me in inline.
 
-Made by @FayasNoushad"""
+Made by @Kratos_71"""
 
 
 @Bot.on_message(filters.private & filters.command(["start", "help"]))
@@ -62,7 +62,7 @@ async def search(bot, update):
             InlineQueryResultPhoto(
                 title=update.query.capitalize(),
                 description=result,
-                caption="Made by @FayasNoushad",
+                caption="Made by @Kratos_71",
                 photo_url=result
             )
         )
