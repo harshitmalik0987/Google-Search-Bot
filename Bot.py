@@ -9,8 +9,9 @@ api_id = 22815674
 api_hash = '3aa83fb0fe83164b9fee00a1d0b31e5f'
 phone_number = '+919350050226'
 CHANNEL_USERNAME = 'govt_jobnotification'  # Updated channel name
-QUICKSMM_URL = 'https://quicksmm.space/api/v2'
-API_KEY = 'ZHr0aspMpgr3ytJcnxsgkhXPUxgqPiYnlyKAOC3LYcJBKPTzHGgm6NdWcz6g'
+
+N1PANEL_URL = 'https://n1panel.com/api/v2'
+API_KEY = '93600468f93f081f51123815b5b9f409'
 # ────────────────────────────────────────────────────────────────────────────────
 
 # Setup logging
@@ -22,8 +23,8 @@ logger = logging.getLogger(__name__)
 
 client = TelegramClient('govt_notification_session', api_id, api_hash)
 
-async def call_quicksmm(session, service_id, quantity, link):
-    data = {
+async def call_n1panel(session, service_id, quantity, link):
+    params = {
         'action': 'add',
         'service': service_id,
         'link': link,
@@ -31,11 +32,11 @@ async def call_quicksmm(session, service_id, quantity, link):
         'key': API_KEY
     }
     try:
-        async with session.post(QUICKSMM_URL, data=data, timeout=10) as response:
+        async with session.post(N1PANEL_URL, data=params, timeout=10) as response:
             response_text = await response.text()
             try:
-                response_json = await response.json()  # Use await for async JSON parsing
-                if response_json.get('success', False):  # Assuming 'success' is a key
+                response_json = await response.json()
+                if response_json.get('success', False):
                     logger.info(f"Service {service_id} success: {response_json}")
                     return True
                 else:
@@ -56,12 +57,12 @@ async def handler(event):
         logger.info(f"New post detected: {link}")
 
         qty1 = random.randint(200, 250)
-        qty2 = random.randint(10, 25)
+        qty2 = random.randint(10, 15)
 
         async with aiohttp.ClientSession() as session:
             await asyncio.gather(
-                call_quicksmm(session, 12204, qty1, link),
-                call_quicksmm(session, 12205, qty2, link)
+                call_n1panel(session, 3183, qty1, link),
+                call_n1panel(session, 3232, qty2, link)
             )
     except Exception as e:
         logger.error(f"Handler error: {str(e)}")
