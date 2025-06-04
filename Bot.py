@@ -24,7 +24,7 @@ from telegram.ext import (
 from functools import wraps
 
 # =============== CONFIGURATION ===============
-BOT_TOKEN = "7642078072:AAETROLkuEmxYQqUBvlvjsAF5ksMxib_N4A"
+BOT_TOKEN = "7642078072:AAFFpkvrM2bxL3TNVD8M0vLWZsZjGwR_E2w"
 
 # TON amounts (in TON units):
 MIN_WITHDRAW_TON = 0.01     # Minimum TON required to withdraw
